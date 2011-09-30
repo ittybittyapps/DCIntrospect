@@ -730,7 +730,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 	[self logRecursiveDescriptionForView:self.currentView];
 }
 
-- (void)logRecursiveDescriptionForView:(UIView *)view
+- (void)logRecursiveDescriptionForView:(UIView *) __unused view
 {
 #ifdef DEBUG
 	// [UIView recursiveDescription] is a private method.  This should probably be re-written to avoid any potential problems.
