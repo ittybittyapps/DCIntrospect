@@ -22,7 +22,7 @@
 	[super dealloc];
 }
 
-#pragma Setup
+#pragma mark Setup
 
 - (id)initWithFrame:(CGRect)frame delegate:(id)aDelegate
 {
@@ -53,7 +53,7 @@
 	return self;
 }
 
-#pragma Custom Setters
+#pragma mark Custom Setters
 
 - (void)setMainRect:(CGRect)newMainRect
 {
@@ -67,9 +67,9 @@
 	[self setNeedsDisplay];
 }
 
-#pragma Drawing/Display
+#pragma mark Drawing/Display
 
-- (void)drawRect:(CGRect)rect
+- (void)drawRect:(CGRect) __unused rect
 {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -99,7 +99,8 @@
 	BOOL showAntialiasingWarning = NO;
 	if (! CGRectIsEmpty(self.superRect))
 	{
-		if ((mainRectOffset.origin.x != floorf(mainRectOffset.origin.x) && mainRect.origin.x != 0) || (mainRectOffset.origin.y != floor(mainRectOffset.origin.y) && mainRect.origin.y != 0))
+		if (((mainRectOffset.origin.x - floorf(mainRectOffset.origin.x)) != 0.0f && mainRect.origin.x != 0.0f) || 
+            ((mainRectOffset.origin.y - floorf(mainRectOffset.origin.y)) != 0.0f && mainRect.origin.y != 0.0f))
 		showAntialiasingWarning = YES;
 	}
 
@@ -181,9 +182,9 @@
 
 }
 
-#pragma Touch Handling
+#pragma mark Touch Handling
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *) __unused event
 {
 	CGFloat labelDistance = 16.0f;
 	CGPoint touchPoint = [[touches anyObject] locationInView:self];
@@ -224,7 +225,7 @@
 	[self touchesBegan:touches withEvent:event];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesEnded:(NSSet *)__unused touches withEvent:(UIEvent *) __unused event
 {
 	[UIView animateWithDuration:0.08 animations:^{
 		self.touchPointView.alpha = self.touchPointLabel.alpha = 0.0f;

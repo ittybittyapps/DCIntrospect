@@ -165,7 +165,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 	[[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification
 													  object:nil
 													   queue:nil
-												  usingBlock:^(NSNotification *notification) {
+												  usingBlock:^(NSNotification __unused *notification) {
 													  // needs to be done after a delay or else it doesn't work for some reason.
 													  if (self.keyboardBindingsOn)
 														  [self performSelector:@selector(takeFirstResponder)
@@ -362,7 +362,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 	[self resetInputTextView];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)string
+- (BOOL)textView:(UITextView *) __unused textView shouldChangeTextInRange:(NSRange) __unused range replacementText:(NSString *)string
 {
 	if ([string isEqualToString:kDCIntrospectKeysInvoke])
 	{
@@ -401,7 +401,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 							options:UIViewAnimationOptionAllowUserInteraction
 						 animations:^{
 							 self.frameView.touchPointLabel.alpha = !self.frameView.touchPointLabel.alpha;
-						 } completion:^(BOOL finished) {
+						 } completion:^(BOOL __unused finished) {
 							 NSString *coordinatesString = [NSString stringWithFormat:@"Coordinates are %@", (self.frameView.touchPointLabel.alpha) ? @"on" : @"off"];
 							 if (self.showStatusBarOverlay)
 								 [self showTemporaryStringInStatusBar:coordinatesString];
@@ -466,7 +466,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 			if (self.currentViewHistory.count == 0)
 				return NO;
 
-			int indexOfCurrentView = [self.currentViewHistory indexOfObject:self.currentView];
+			NSUInteger indexOfCurrentView = [self.currentViewHistory indexOfObject:self.currentView];
 			if (indexOfCurrentView == 0)
 			{
 				NSLog(@"DCIntrospect: At bottom of view history.");
@@ -543,7 +543,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 		[outputString appendFormat:@"%@.frame = CGRectMake(%.1f, %.1f, %.1f, %.1f);\n", varName, self.currentView.frame.origin.x, self.currentView.frame.origin.y, self.currentView.frame.size.width, self.currentView.frame.size.height];
 	}
 
-	if (self.originalAlpha != self.currentView.alpha)
+	if ((self.originalAlpha - self.currentView.alpha) != 0.0f)
 	{
 		[outputString appendFormat:@"%@.alpha = %.2f;\n", varName, self.currentView.alpha];
 	}
@@ -588,7 +588,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 		return;
 
 	NSMutableArray *objectsToRemove = [NSMutableArray array];
-	[self.objectNames enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+	[self.objectNames enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL __unused *stop) {
 		if ([[obj class] isSubclassOfClass:[UIView class]])
 		{
 			UIView *subview = (UIView *)obj;
@@ -597,7 +597,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 		}
 	}];
 
-	[objectsToRemove enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+	[objectsToRemove enumerateObjectsUsingBlock:^(id obj, NSUInteger __unused  idx, BOOL __unused *stop) {
 		NSString *key = (NSString *)obj;
 		[self.objectNames removeObjectForKey:key];
 	}];
@@ -1061,7 +1061,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 	}
 	else if ([propertyName isEqualToString:@"autoresizingMask"])
 	{
-		UIViewAutoresizing mask = [value intValue];
+		UIViewAutoresizing mask = (UIViewAutoresizing)[value intValue];
 		NSMutableString *string = [NSMutableString string];
 		if (mask & UIViewAutoresizingFlexibleLeftMargin)
 			[string appendString:@"UIViewAutoresizingFlexibleLeftMargin"];
@@ -1083,7 +1083,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 	}
 	else if ([propertyName isEqualToString:@"accessibilityTraits"])
 	{
-		UIAccessibilityTraits traits = [value intValue];
+		UIAccessibilityTraits traits = (UIAccessibilityTraits)[value intValue];
 		NSMutableString *string = [NSMutableString string];
 		if (traits & UIAccessibilityTraitButton)
 			[string appendString:@"UIAccessibilityTraitButton"];
@@ -1260,7 +1260,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 		[UIView animateWithDuration:0.1
 						 animations:^{
 							 backingView.alpha = 1.0f;
-						 } completion:^(BOOL finished) {
+						 } completion:^(BOOL __unused finished) {
 							 [webView loadHTMLString:helpString baseURL:nil];
 						 }];
 	}
@@ -1270,14 +1270,14 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 		[UIView animateWithDuration:0.1
 						 animations:^{
 							 backingView.alpha = 0;
-						 } completion:^(BOOL finished) {
+						 } completion:^(BOOL __unused finished) {
 							 [backingView removeFromSuperview];
 						 }];
 		[self updateStatusBar];
 	}
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (BOOL)webView:(UIWebView *)__unused webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)__unused navigationType
 {
 	NSString *requestString = [[request URL] absoluteString];
 	if ([requestString isEqualToString:@"about:blank"])
@@ -1328,7 +1328,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 		[outputString appendFormat:@"bounds: %@ | ", NSStringFromCGRect(view.bounds)];
 		[outputString appendFormat:@"center: %@\n", NSStringFromCGPoint(view.center)];
 		[outputString appendFormat:@"    transform: %@\n", NSStringFromCGAffineTransform(view.transform)];
-		[outputString appendFormat:@"    autoresizingMask: %@\n", [self describeProperty:@"autoresizingMask" value:[NSNumber numberWithInt:view.autoresizingMask]]];
+		[outputString appendFormat:@"    autoresizingMask: %@\n", [self describeProperty:@"autoresizingMask" value:[NSNumber numberWithUnsignedInteger:view.autoresizingMask]]];
 		[outputString appendFormat:@"    autoresizesSubviews: %@\n", (view.autoresizesSubviews) ? @"YES" : @"NO"];
 		[outputString appendFormat:@"    contentMode: %@ | ", [self describeProperty:@"contentMode" value:[NSNumber numberWithInt:view.contentMode]]];
 		[outputString appendFormat:@"contentStretch: %@\n", NSStringFromCGRect(view.contentStretch)];
@@ -1390,10 +1390,10 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 		UIControl *control = (UIControl *)object;
 		UIControlEvents controlEvents = [control allControlEvents];
 		NSSet *allTargets = [control allTargets];
-		[allTargets enumerateObjectsUsingBlock:^(id target, BOOL *stop)
+		[allTargets enumerateObjectsUsingBlock:^(id target, BOOL __unused *stop)
 		 {
 			 NSArray *actions = [control actionsForTarget:target forControlEvent:controlEvents];
-			 [actions enumerateObjectsUsingBlock:^(id action, NSUInteger idx, BOOL *stop2)
+			 [actions enumerateObjectsUsingBlock:^(id action, NSUInteger __unused idx, BOOL __unused *stop2)
 			  {
 				  [outputString appendFormat:@"    target: %@ action: %@\n", target, action];
 			  }];
@@ -1414,7 +1414,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 	NSMutableString *outputString = [NSMutableString string];
 
 	// warn about accessibility inspector if the element count is zero
-	NSUInteger count = [object accessibilityElementCount];
+	NSInteger count = [object accessibilityElementCount];
 	if (count == 0)
 		[outputString appendString:@"\n\n** Warning: Logging accessibility properties requires Accessibility Inspector: Settings.app -> General -> Accessibility\n"];
 
@@ -1435,7 +1435,7 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
     int numClasses = objc_getClassList(NULL, 0);
     Class *classes = NULL;
 
-    classes = malloc(sizeof(Class) * numClasses);
+    classes = malloc(sizeof(Class) * (size_t)numClasses);
     numClasses = objc_getClassList(classes, numClasses);
 
     NSMutableArray *result = [NSMutableArray array];

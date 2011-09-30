@@ -27,7 +27,7 @@
 	return self;
 }
 
-- (void)drawRect:(CGRect)rect
+- (void)drawRect:(CGRect) __unused rect
 {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self.color set];

@@ -30,7 +30,7 @@
 		self.backgroundColor = [UIColor blackColor];
 
         UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.frame];
-        backgroundImageView.image = [[UIImage imageNamed:@"statusBarBackground.png"] stretchableImageWithLeftCapWidth:2.0f topCapHeight:0.0f];
+        backgroundImageView.image = [[UIImage imageNamed:@"statusBarBackground.png"] stretchableImageWithLeftCapWidth:2 topCapHeight:0];
         [self addSubview:backgroundImageView];
         [backgroundImageView release];
 
