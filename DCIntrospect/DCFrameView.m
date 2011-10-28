@@ -4,6 +4,8 @@
 //  Created by Domestic Cat on 29/04/11.
 //
 
+#if TARGET_IPHONE_SIMULATOR
+
 #import "DCFrameView.h"
 
 @implementation DCFrameView
@@ -233,3 +235,5 @@
 }
 
 @end
+
+#endif // TARGET_IPHONE_SIMULATOR

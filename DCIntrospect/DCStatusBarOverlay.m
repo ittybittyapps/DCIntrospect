@@ -4,6 +4,8 @@
 //  Copyright 2011 Domestic Cat. All rights reserved.
 //
 
+#if TARGET_IPHONE_SIMULATOR
+
 #import "DCStatusBarOverlay.h"
 
 @implementation DCStatusBarOverlay
@@ -98,3 +100,5 @@
 }
 
 @end
+
+#endif // TARGET_IPHONE_SIMULATOR
