@@ -4,7 +4,7 @@
 //  Created by Domestic Cat on 29/04/11.
 //
 
-#if TARGET_IPHONE_SIMULATOR
+#if DCINTOSPECT_ENABLED
 
 #import "DCIntrospect.h"
 #import <dlfcn.h>
@@ -1530,4 +1530,4 @@ id UITextInputTraits_valueForKey(id self, SEL _cmd, NSString *key)
 
 @end
 
-#endif // TARGET_IPHONE_SIMULATOR
+#endif // DCINTOSPECT_ENABLED

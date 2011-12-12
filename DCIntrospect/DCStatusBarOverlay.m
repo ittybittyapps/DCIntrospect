@@ -4,7 +4,7 @@
 //  Copyright 2011 Domestic Cat. All rights reserved.
 //
 
-#if TARGET_IPHONE_SIMULATOR
+#if DCINTOSPECT_ENABLED
 
 #import "DCStatusBarOverlay.h"
 
@@ -101,4 +101,4 @@
 
 @end
 
-#endif // TARGET_IPHONE_SIMULATOR
+#endif // DCINTOSPECT_ENABLED

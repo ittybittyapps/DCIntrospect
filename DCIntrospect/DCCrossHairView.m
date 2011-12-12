@@ -4,7 +4,7 @@
 //  Created by Domestic Cat on 3/05/11.
 //
 
-#if TARGET_IPHONE_SIMULATOR
+#if DCINTOSPECT_ENABLED
 
 #import "DCCrossHairView.h"
 
@@ -44,4 +44,4 @@
 
 @end
 
-#endif // TARGET_IPHONE_SIMULATOR
+#endif // DCINTOSPECT_ENABLED

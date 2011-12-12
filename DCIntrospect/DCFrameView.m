@@ -4,7 +4,7 @@
 //  Created by Domestic Cat on 29/04/11.
 //
 
-#if TARGET_IPHONE_SIMULATOR
+#if DCINTOSPECT_ENABLED
 
 #import "DCFrameView.h"
 
@@ -236,4 +236,4 @@
 
 @end
 
-#endif // TARGET_IPHONE_SIMULATOR
+#endif // DCINTOSPECT_ENABLED
