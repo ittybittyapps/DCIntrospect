@@ -4,7 +4,7 @@
 //  Created by Domestic Cat on 29/04/11.
 //
 
-#if DCINTOSPECT_ENABLED
+#if DCINTROSPECT_ENABLED	
 
 #import "DCFrameView.h"
 
@@ -236,4 +236,4 @@
 
 @end
 
-#endif // DCINTOSPECT_ENABLED
+#endif // DCINTROSPECT_ENABLED	

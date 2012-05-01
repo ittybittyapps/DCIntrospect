@@ -4,7 +4,7 @@
 //  Copyright 2011 Domestic Cat. All rights reserved.
 //
 
-#if DCINTOSPECT_ENABLED
+#if DCINTROSPECT_ENABLED	
 
 #import "DCStatusBarOverlay.h"
 
@@ -101,4 +101,4 @@
 
 @end
 
-#endif // DCINTOSPECT_ENABLED
+#endif // DCINTROSPECT_ENABLED	

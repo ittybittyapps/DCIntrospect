@@ -5,12 +5,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class DCIntrospectDemoViewController;
+#import "DCIntrospectDemoViewController.h"
 
 @interface DCIntrospectDemoAppDelegate : NSObject <UIApplicationDelegate>
-{
-}
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet DCIntrospectDemoViewController *viewController;

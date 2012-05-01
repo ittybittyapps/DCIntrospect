@@ -4,7 +4,7 @@
 //  Created by Domestic Cat on 3/05/11.
 //
 
-#if DCINTOSPECT_ENABLED
+#if DCINTROSPECT_ENABLED	
 
 #import "DCCrossHairView.h"
 
@@ -44,4 +44,4 @@
 
 @end
 
-#endif // DCINTOSPECT_ENABLED
+#endif // DCINTROSPECT_ENABLED	
