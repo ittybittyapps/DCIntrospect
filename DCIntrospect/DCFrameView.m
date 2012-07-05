@@ -24,7 +24,7 @@
 	[super dealloc];
 }
 
-#pragma mark Setup
+#pragma mark - Setup
 
 - (id)initWithFrame:(CGRect)frame delegate:(id)aDelegate
 {
@@ -55,7 +55,7 @@
 	return self;
 }
 
-#pragma mark Custom Setters
+#pragma mark - Custom Setters
 
 - (void)setMainRect:(CGRect)newMainRect
 {
@@ -69,7 +69,7 @@
 	[self setNeedsDisplay];
 }
 
-#pragma mark Drawing/Display
+#pragma mark - Drawing/Display
 
 - (void)drawRect:(CGRect) __unused rect
 {
@@ -184,7 +184,7 @@
 
 }
 
-#pragma mark Touch Handling
+#pragma mark - Touch Handling
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *) __unused event
 {
